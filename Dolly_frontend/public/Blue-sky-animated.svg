@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3840" height="2160" viewBox="0 0 3840 2160" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <filter id="sky-motion" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.0025 0.004" numOctaves="2" seed="12" result="noise">
+        <animate attributeName="baseFrequency" dur="34s" values="0.0025 0.004;0.004 0.0025;0.0025 0.004" repeatCount="indefinite" />
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G">
+        <animate attributeName="scale" dur="28s" values="5;14;5" repeatCount="indefinite" />
+      </feDisplacementMap>
+    </filter>
+    <filter id="grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.32 0" />
+    </filter>
+  </defs>
+  <g filter="url(#sky-motion)">
+    <g>
+      <animateTransform attributeName="transform" type="translate" dur="22s" values="0 0;-46 24;18 42;0 0" keyTimes="0;0.35;0.7;1" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1" repeatCount="indefinite" />
+      <g transform="translate(1920 1080)">
+        <animateTransform attributeName="transform" type="scale" additive="sum" dur="28s" values="1.05;1.085;1.06;1.05" keyTimes="0;0.36;0.72;1" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1;0.42 0 0.58 1" repeatCount="indefinite" />
+        <image href="./Blue-sky-3840x2160.svg" x="-1920" y="-1080" width="3840" height="2160" preserveAspectRatio="xMidYMid slice" />
+      </g>
+    </g>
+  </g>
+  <rect width="3840" height="2160" filter="url(#grain)" opacity="0.04" style="mix-blend-mode:soft-light" />
+</svg>

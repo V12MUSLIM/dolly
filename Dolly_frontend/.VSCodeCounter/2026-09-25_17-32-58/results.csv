@@ -1,0 +1,41 @@
+"filename", "language", "PostCSS", "TypeScript JSX", "TypeScript", "JSON", "comment", "blank", "total"
+"c:\Users\LENOVO\minia-students-hub\app\add-todo\page.tsx", "TypeScript JSX", 0, 54, 0, 0, 1, 7, 62
+"c:\Users\LENOVO\minia-students-hub\app\components\AnimatedList.tsx", "TypeScript JSX", 0, 116, 0, 0, 0, 12, 128
+"c:\Users\LENOVO\minia-students-hub\app\components\ThemePicker.tsx", "TypeScript JSX", 0, 70, 0, 0, 0, 7, 77
+"c:\Users\LENOVO\minia-students-hub\app\components\addTodo.tsx", "TypeScript JSX", 0, 192, 0, 0, 0, 8, 200
+"c:\Users\LENOVO\minia-students-hub\app\components\animated-circular-progress-bar.tsx", "TypeScript JSX", 0, 105, 0, 0, 0, 4, 109
+"c:\Users\LENOVO\minia-students-hub\app\components\app-shell.tsx", "TypeScript JSX", 0, 41, 0, 0, 0, 7, 48
+"c:\Users\LENOVO\minia-students-hub\app\components\charts\ChartPieDonut.tsx", "TypeScript JSX", 0, 107, 0, 0, 3, 16, 126
+"c:\Users\LENOVO\minia-students-hub\app\components\charts\PriorityChart.tsx", "TypeScript JSX", 0, 88, 0, 0, 0, 13, 101
+"c:\Users\LENOVO\minia-students-hub\app\components\charts\WeeklyProductivityChart.tsx", "TypeScript JSX", 0, 124, 0, 0, 0, 15, 139
+"c:\Users\LENOVO\minia-students-hub\app\components\completed.tsx", "TypeScript JSX", 0, 157, 0, 0, 0, 7, 164
+"c:\Users\LENOVO\minia-students-hub\app\components\dailyQuoteCard.tsx", "TypeScript JSX", 0, 23, 0, 0, 0, 3, 26
+"c:\Users\LENOVO\minia-students-hub\app\components\dailyStreak.tsx", "TypeScript JSX", 0, 52, 0, 0, 0, 2, 54
+"c:\Users\LENOVO\minia-students-hub\app\components\dueTodos.tsx", "TypeScript JSX", 0, 62, 0, 0, 0, 4, 66
+"c:\Users\LENOVO\minia-students-hub\app\components\emptyState.tsx", "TypeScript JSX", 0, 87, 0, 0, 0, 11, 98
+"c:\Users\LENOVO\minia-students-hub\app\components\filters.tsx", "TypeScript JSX", 0, 28, 0, 0, 0, 1, 29
+"c:\Users\LENOVO\minia-students-hub\app\components\mobilenavigation.tsx", "TypeScript JSX", 0, 228, 0, 0, 0, 14, 242
+"c:\Users\LENOVO\minia-students-hub\app\components\modals\ProjectModal.tsx", "TypeScript JSX", 0, 84, 0, 0, 0, 3, 87
+"c:\Users\LENOVO\minia-students-hub\app\components\navigation.tsx", "TypeScript JSX", 0, 331, 0, 0, 1, 23, 355
+"c:\Users\LENOVO\minia-students-hub\app\components\neatBackground.tsx", "TypeScript JSX", 0, 215, 0, 0, 9, 20, 244
+"c:\Users\LENOVO\minia-students-hub\app\components\quickActions.tsx", "TypeScript JSX", 0, 82, 0, 0, 0, 5, 87
+"c:\Users\LENOVO\minia-students-hub\app\components\quickAdd.tsx", "TypeScript JSX", 0, 93, 0, 0, 0, 5, 98
+"c:\Users\LENOVO\minia-students-hub\app\components\statusChip.tsx", "TypeScript JSX", 0, 25, 0, 0, 0, 3, 28
+"c:\Users\LENOVO\minia-students-hub\app\components\tags.tsx", "TypeScript JSX", 0, 197, 0, 0, 0, 7, 204
+"c:\Users\LENOVO\minia-students-hub\app\components\todo\TodoEdit.tsx", "TypeScript JSX", 0, 65, 0, 0, 0, 5, 70
+"c:\Users\LENOVO\minia-students-hub\app\components\todo\TodoMenu.tsx", "TypeScript JSX", 0, 64, 0, 0, 0, 9, 73
+"c:\Users\LENOVO\minia-students-hub\app\components\todo\todo.tsx", "TypeScript JSX", 0, 202, 0, 0, 0, 12, 214
+"c:\Users\LENOVO\minia-students-hub\app\components\todosDisplay.tsx", "TypeScript JSX", 0, 59, 0, 0, 0, 3, 62
+"c:\Users\LENOVO\minia-students-hub\app\constants\colors.ts", "TypeScript", 0, 0, 44, 0, 0, 2, 46
+"c:\Users\LENOVO\minia-students-hub\app\dashboard\page.tsx", "TypeScript JSX", 0, 60, 0, 0, 1, 6, 67
+"c:\Users\LENOVO\minia-students-hub\app\globals.css", "PostCSS", 491, 0, 0, 0, 44, 26, 561
+"c:\Users\LENOVO\minia-students-hub\app\layout.tsx", "TypeScript JSX", 0, 48, 0, 0, 0, 8, 56
+"c:\Users\LENOVO\minia-students-hub\app\page.tsx", "TypeScript JSX", 0, 22, 0, 0, 0, 5, 27
+"c:\Users\LENOVO\minia-students-hub\app\projects\[projectid]\loading.tsx", "TypeScript JSX", 0, 8, 0, 0, 0, 1, 9
+"c:\Users\LENOVO\minia-students-hub\app\projects\[projectid]\page.tsx", "TypeScript JSX", 0, 11, 0, 0, 0, 2, 13
+"c:\Users\LENOVO\minia-students-hub\app\projects\[projectid]\projectPage.tsx", "TypeScript JSX", 0, 19, 0, 0, 0, 4, 23
+"c:\Users\LENOVO\minia-students-hub\app\providers.tsx", "TypeScript JSX", 0, 29, 0, 0, 0, 3, 32
+"c:\Users\LENOVO\minia-students-hub\app\quotes.json", "JSON", 0, 0, 0, 16261, 0, 0, 16261
+"c:\Users\LENOVO\minia-students-hub\app\settings\page.tsx", "TypeScript JSX", 0, 221, 0, 0, 0, 3, 224
+"c:\Users\LENOVO\minia-students-hub\app\today-todos\page.tsx", "TypeScript JSX", 0, 23, 0, 0, 0, 3, 26
+"Total", "-", 491, 3392, 44, 16261, 59, 289, 20536

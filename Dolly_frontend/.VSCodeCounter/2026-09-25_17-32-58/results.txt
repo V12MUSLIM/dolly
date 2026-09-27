@@ -1,0 +1,79 @@
+Date : 2026-09-25 17:32:58
+Directory : c:\Users\LENOVO\minia-students-hub\app
+Total : 39 files,  20188 codes, 59 comments, 289 blanks, all 20536 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| JSON           |          1 |     16,261 |          0 |          0 |     16,261 |
+| TypeScript JSX |         36 |      3,392 |         15 |        261 |      3,668 |
+| PostCSS        |          1 |        491 |         44 |         26 |        561 |
+| TypeScript     |          1 |         44 |          0 |          2 |         46 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++--------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                 | files      | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                    |         39 |     20,188 |         59 |        289 |     20,536 |
+| . (Files)                                                                            |          5 |     16,851 |         44 |         42 |     16,937 |
+| add-todo                                                                             |          1 |         54 |          1 |          7 |         62 |
+| components                                                                           |         26 |      2,897 |         13 |        219 |      3,129 |
+| components (Files)                                                                   |         19 |      2,163 |         10 |        146 |      2,319 |
+| components\charts                                                                    |          3 |        319 |          3 |         44 |        366 |
+| components\modals                                                                    |          1 |         84 |          0 |          3 |         87 |
+| components\todo                                                                      |          3 |        331 |          0 |         26 |        357 |
+| constants                                                                            |          1 |         44 |          0 |          2 |         46 |
+| dashboard                                                                            |          1 |         60 |          1 |          6 |         67 |
+| projects                                                                             |          3 |         38 |          0 |          7 |         45 |
+| projects\[projectid]                                                                 |          3 |         38 |          0 |          7 |         45 |
+| settings                                                                             |          1 |        221 |          0 |          3 |        224 |
+| today-todos                                                                          |          1 |         23 |          0 |          3 |         26 |
++--------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++--------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                             | language       | code       | comment    | blank      | total      |
++--------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\Users\LENOVO\minia-students-hub\app\add-todo\page.tsx                             | TypeScript JSX |         54 |          1 |          7 |         62 |
+| c:\Users\LENOVO\minia-students-hub\app\components\AnimatedList.tsx                   | TypeScript JSX |        116 |          0 |         12 |        128 |
+| c:\Users\LENOVO\minia-students-hub\app\components\ThemePicker.tsx                    | TypeScript JSX |         70 |          0 |          7 |         77 |
+| c:\Users\LENOVO\minia-students-hub\app\components\addTodo.tsx                        | TypeScript JSX |        192 |          0 |          8 |        200 |
+| c:\Users\LENOVO\minia-students-hub\app\components\animated-circular-progress-bar.tsx | TypeScript JSX |        105 |          0 |          4 |        109 |
+| c:\Users\LENOVO\minia-students-hub\app\components\app-shell.tsx                      | TypeScript JSX |         41 |          0 |          7 |         48 |
+| c:\Users\LENOVO\minia-students-hub\app\components\charts\ChartPieDonut.tsx           | TypeScript JSX |        107 |          3 |         16 |        126 |
+| c:\Users\LENOVO\minia-students-hub\app\components\charts\PriorityChart.tsx           | TypeScript JSX |         88 |          0 |         13 |        101 |
+| c:\Users\LENOVO\minia-students-hub\app\components\charts\WeeklyProductivityChart.tsx | TypeScript JSX |        124 |          0 |         15 |        139 |
+| c:\Users\LENOVO\minia-students-hub\app\components\completed.tsx                      | TypeScript JSX |        157 |          0 |          7 |        164 |
+| c:\Users\LENOVO\minia-students-hub\app\components\dailyQuoteCard.tsx                 | TypeScript JSX |         23 |          0 |          3 |         26 |
+| c:\Users\LENOVO\minia-students-hub\app\components\dailyStreak.tsx                    | TypeScript JSX |         52 |          0 |          2 |         54 |
+| c:\Users\LENOVO\minia-students-hub\app\components\dueTodos.tsx                       | TypeScript JSX |         62 |          0 |          4 |         66 |
+| c:\Users\LENOVO\minia-students-hub\app\components\emptyState.tsx                     | TypeScript JSX |         87 |          0 |         11 |         98 |
+| c:\Users\LENOVO\minia-students-hub\app\components\filters.tsx                        | TypeScript JSX |         28 |          0 |          1 |         29 |
+| c:\Users\LENOVO\minia-students-hub\app\components\mobilenavigation.tsx               | TypeScript JSX |        228 |          0 |         14 |        242 |
+| c:\Users\LENOVO\minia-students-hub\app\components\modals\ProjectModal.tsx            | TypeScript JSX |         84 |          0 |          3 |         87 |
+| c:\Users\LENOVO\minia-students-hub\app\components\navigation.tsx                     | TypeScript JSX |        331 |          1 |         23 |        355 |
+| c:\Users\LENOVO\minia-students-hub\app\components\neatBackground.tsx                 | TypeScript JSX |        215 |          9 |         20 |        244 |
+| c:\Users\LENOVO\minia-students-hub\app\components\quickActions.tsx                   | TypeScript JSX |         82 |          0 |          5 |         87 |
+| c:\Users\LENOVO\minia-students-hub\app\components\quickAdd.tsx                       | TypeScript JSX |         93 |          0 |          5 |         98 |
+| c:\Users\LENOVO\minia-students-hub\app\components\statusChip.tsx                     | TypeScript JSX |         25 |          0 |          3 |         28 |
+| c:\Users\LENOVO\minia-students-hub\app\components\tags.tsx                           | TypeScript JSX |        197 |          0 |          7 |        204 |
+| c:\Users\LENOVO\minia-students-hub\app\components\todo\TodoEdit.tsx                  | TypeScript JSX |         65 |          0 |          5 |         70 |
+| c:\Users\LENOVO\minia-students-hub\app\components\todo\TodoMenu.tsx                  | TypeScript JSX |         64 |          0 |          9 |         73 |
+| c:\Users\LENOVO\minia-students-hub\app\components\todo\todo.tsx                      | TypeScript JSX |        202 |          0 |         12 |        214 |
+| c:\Users\LENOVO\minia-students-hub\app\components\todosDisplay.tsx                   | TypeScript JSX |         59 |          0 |          3 |         62 |
+| c:\Users\LENOVO\minia-students-hub\app\constants\colors.ts                           | TypeScript     |         44 |          0 |          2 |         46 |
+| c:\Users\LENOVO\minia-students-hub\app\dashboard\page.tsx                            | TypeScript JSX |         60 |          1 |          6 |         67 |
+| c:\Users\LENOVO\minia-students-hub\app\globals.css                                   | PostCSS        |        491 |         44 |         26 |        561 |
+| c:\Users\LENOVO\minia-students-hub\app\layout.tsx                                    | TypeScript JSX |         48 |          0 |          8 |         56 |
+| c:\Users\LENOVO\minia-students-hub\app\page.tsx                                      | TypeScript JSX |         22 |          0 |          5 |         27 |
+| c:\Users\LENOVO\minia-students-hub\app\projects\[projectid]\loading.tsx              | TypeScript JSX |          8 |          0 |          1 |          9 |
+| c:\Users\LENOVO\minia-students-hub\app\projects\[projectid]\page.tsx                 | TypeScript JSX |         11 |          0 |          2 |         13 |
+| c:\Users\LENOVO\minia-students-hub\app\projects\[projectid]\projectPage.tsx          | TypeScript JSX |         19 |          0 |          4 |         23 |
+| c:\Users\LENOVO\minia-students-hub\app\providers.tsx                                 | TypeScript JSX |         29 |          0 |          3 |         32 |
+| c:\Users\LENOVO\minia-students-hub\app\quotes.json                                   | JSON           |     16,261 |          0 |          0 |     16,261 |
+| c:\Users\LENOVO\minia-students-hub\app\settings\page.tsx                             | TypeScript JSX |        221 |          0 |          3 |        224 |
+| c:\Users\LENOVO\minia-students-hub\app\today-todos\page.tsx                          | TypeScript JSX |         23 |          0 |          3 |         26 |
+| Total                                                                                |                |     20,188 |         59 |        289 |     20,536 |
++--------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
