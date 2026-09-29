@@ -42,6 +42,7 @@ export interface TodosStoreTypes {
   deleteProject: (id: string) => void;
   isProjectModalOpen: boolean;
   setProjectModalOpen: (isOpen: boolean) => void;
+  
 }
 
 export const useTodos = create<TodosStoreTypes>()(

@@ -1,5 +1,5 @@
 import { useTodos } from "@/store/TodosStore";
-import { Button, Input, Label, Modal } from "@heroui/react";
+import { Button, ErrorMessage, Input, Label, Modal } from "@heroui/react";
 import { Plus } from "lucide-react";
 import React from "react";
 import { colors } from "@/app/constants/colors";
@@ -22,15 +22,21 @@ export default function ProjectModal() {
               <Modal.Heading>Add a new project</Modal.Heading>
             </Modal.Header>
             <Modal.Body className="flex flex-col gap-4">
-              <Input
-                fullWidth
-                placeholder="Project Name"
-                variant="secondary"
-                value={projectName}
-                onChange={(e) => {
-                  setProjectName(e.target.value);
-                }}
-              />
+              <div>
+                <Input
+                  fullWidth
+                  placeholder="Project Name"
+                  variant="secondary"
+                  value={projectName}
+                  onChange={(e) => {
+                    setProjectName(e.target.value);
+                  }}
+                  
+                />
+                {projectName.length >= 50 && (
+                  <ErrorMessage>Max project name is 50</ErrorMessage>
+                )}
+              </div>
               <div className="grid grid-cols-5 gap-y-5 place-items-center">
                 <Label className="col-span-5 place-self-start">
                   Choose color
@@ -74,6 +80,7 @@ export default function ProjectModal() {
                   setProjectName("");
                   setColor(colors[0]);
                 }}
+                isDisabled={projectName.length >= 50}
               >
                 Add Project
               </Button>

@@ -1,7 +1,14 @@
 import { Button, Surface } from "@heroui/react";
-import { ClipboardList, Ghost, Plus, FolderOpen } from "lucide-react";
+import { Plus } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-
+import {
+  themeFolderImages,
+  themeNotebookImages,
+  themeCheckImages,
+} from "../constants/folderImages";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 interface EmptyStateProps {
   message?: string;
   style: "page" | "section";
@@ -24,11 +31,11 @@ export default function EmptyState({
   variant = "default",
   isProject,
   isButton,
-  
 }: EmptyStateProps) {
   const isPage = style === "page";
   const isFullEmpty = state === "fullEmpty";
-
+  const [mounted, setMounted] = useState(false);
+  const { theme } = useTheme();
   const defaultContent = isFullEmpty
     ? isPage
       ? {
@@ -52,8 +59,21 @@ export default function EmptyState({
           message: "This section is beautifully clear. Keep that streak going.",
         };
 
-  const Icon =
-    isFullEmpty && isProject ? FolderOpen : isFullEmpty ? Ghost : ClipboardList;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  const folderImage = mounted
+    ? (themeFolderImages[theme as keyof typeof themeFolderImages] ??
+      themeFolderImages.default)
+    : themeFolderImages.default;
+  const NotebookImage = mounted
+    ? (themeNotebookImages[theme as keyof typeof themeNotebookImages] ??
+      themeNotebookImages.default)
+    : themeNotebookImages.default;
+  const CheckImages = mounted
+    ? (themeCheckImages[theme as keyof typeof themeCheckImages] ??
+      themeCheckImages.default)
+    : themeCheckImages.default;
 
   return (
     <Surface
@@ -68,12 +88,36 @@ export default function EmptyState({
     >
       <div
         className={[
-          "mb-5 grid place-items-center rounded-full bg-accent-soft text-accent-soft-foreground",
+          "mb-5 grid place-items-center rounded-full  text-accent-soft-foreground",
 
           isPage ? "size-24" : "size-16",
         ].join(" ")}
       >
-        <Icon aria-hidden="true" className={isPage ? "size-12" : "size-8"} />
+        {isProject ? (
+          <Image
+            src={folderImage}
+            alt="Empty Folder"
+            width={64}
+            height={64}
+            priority
+          />
+        ) : style === "page" ? (
+          <Image
+            src={NotebookImage}
+            alt="Empty Notebook"
+            width={96}
+            height={96}
+            priority
+          />
+        ) : (
+          <Image
+            src={CheckImages}
+            alt="Nothing more"
+            width={64}
+            height={64}
+            priority
+          />
+        )}
       </div>
 
       <h2 className={isPage ? "text-2xl font-bold" : "text-lg font-semibold"}>

@@ -6,7 +6,6 @@ import {
   ChevronDown,
   Clock3,
   FolderKanban,
-  Info,
   X,
 } from "lucide-react";
 import { useTodos } from "@/store/TodosStore";

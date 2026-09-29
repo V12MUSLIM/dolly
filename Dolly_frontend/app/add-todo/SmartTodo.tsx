@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, Surface, Tabs, TextArea } from "@heroui/react";
 import { Plus } from "lucide-react";
 import AddTodo from "../components/addTodo";
@@ -22,11 +21,7 @@ export default function SmartTodo() {
           <AddTodo filters />
         </Tabs.Panel>
         <Tabs.Panel id="chatbot">
-          <Surface className="w-full px-2 relative rounded-3xl p-0.5 max-w-3xl overflow-visible bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 via-purple-500 to-red-500 bg-[length:200%_auto] animate-[gradient_4s_linear_infinite]">
-            {/* The Glow Aura (Blurred layer pushed behind the surface) */}
-            <div className="w-full absolute inset-0 -z-10 rounded-3xl h-full bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 via-purple-500 to-red-500 bg-[length:200%_auto] animate-[gradient_4s_linear_infinite] blur-xl opacity-70" />
-
-            {/* The Inner Mask Content Card */}
+          <Surface className="w-full px-2 relative rounded-3xl p-0.5 max-w-3xl overflow-visible">
             <div className="relative p-4 rounded-[22px] bg-white w-full h-full">
               <TextArea
                 className="w-full min-h-28 min-w-70 resize-none"

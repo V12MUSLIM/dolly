@@ -8,6 +8,7 @@ import {
   CalendarDays,
   CheckCircle2,
   Inbox,
+  KanbanSquare,
   LayoutDashboard,
   ListTodo,
   PanelLeftClose,
@@ -23,7 +24,6 @@ import Image from "next/image";
 import useTodayTodos from "@/hooks/useTodayTodos";
 import EmptyState from "./emptyState";
 import { useTheme } from "next-themes";
-import ProjectModal from "./modals/ProjectModal";
 import { TodoProps } from "./todo/todo";
 
 const themeLogoImages = {
@@ -69,7 +69,7 @@ export default function TodoSidebar({
   const todos = useTodos((s) => s.todos);
   const todayTodos = useTodayTodos(todos);
   const [mounted, setMounted] = React.useState(false);
-  const { resolvedTheme, theme } = useTheme();
+  const { resolvedTheme} = useTheme();
   const completedTodayTodosLength = useTodayTodos(
     todos.filter((todo) => todo.completed),
   ).length;
@@ -88,6 +88,7 @@ export default function TodoSidebar({
     { label: "Upcoming", href: "/upcoming", Icon: ListTodo },
     { label: "Completed", href: "/completed", Icon: CheckCircle2 },
     { label: "Dashboard", href: "/dashboard", Icon: LayoutDashboard },
+    { label: "Kanban", href: "/kanban", Icon: KanbanSquare },
   ];
   React.useEffect(() => {
     setMounted(true);
@@ -104,9 +105,6 @@ export default function TodoSidebar({
     ? (themeLogoImages[resolvedTheme as keyof typeof themeLogoImages] ??
       themeLogoImages.default)
     : themeLogoImages.default;
-  console.log("logo", logo);
-  console.log("theme:", theme);
-  console.log("resolvedTheme:", resolvedTheme);
   return (
     <aside className="sticky border-r-2 border-black/10 inset-shadow-sm rounded-r-2xl top-0 hidden h-dvh w-full flex-col   bg-surface px-2 py-4 text-foreground lg:flex">
       <div
