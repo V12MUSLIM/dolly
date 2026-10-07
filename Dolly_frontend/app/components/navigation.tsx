@@ -25,24 +25,8 @@ import useTodayTodos from "@/hooks/useTodayTodos";
 import EmptyState from "./emptyState";
 import { useTheme } from "next-themes";
 import { TodoProps } from "./todo/todo";
+import { themeLogoImages } from "../constants/themedImages";
 
-const themeLogoImages = {
-  default: "/default.png",
-  ocean: "/focus.png",
-  violet: "/plan.png",
-  emerald: "/fresh-start.png",
-  coral: "/priorities.png",
-  rose: "/rose.png",
-  calm: "/calm.png",
-
-  // Dark themes
-  midnight: "/focus.png",
-  "dark-violet": "/plan.png",
-  forest: "/fresh-start.png",
-  "dark-coral": "/priorities.png",
-  "dark-rose": "/rose.png",
-  mono: "/calm.png",
-};
 type NavItem = {
   label: string;
   href: string;
@@ -68,8 +52,8 @@ export default function TodoSidebar({
   const pathname = usePathname();
   const todos = useTodos((s) => s.todos);
   const todayTodos = useTodayTodos(todos);
-  const [mounted, setMounted] = React.useState(false);
-  const { resolvedTheme} = useTheme();
+  const hasHydrated = useTodos((s) => s.hasHydrated);
+  const { resolvedTheme } = useTheme();
   const completedTodayTodosLength = useTodayTodos(
     todos.filter((todo) => todo.completed),
   ).length;
@@ -90,9 +74,7 @@ export default function TodoSidebar({
     { label: "Dashboard", href: "/dashboard", Icon: LayoutDashboard },
     { label: "Kanban", href: "/kanban", Icon: KanbanSquare },
   ];
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+
   const projects = useTodos((s) => s.projects);
   const setProjectModalOpen = useTodos((s) => s.setProjectModalOpen);
   const deleteProject = useTodos((s) => s.deleteProject);
@@ -101,7 +83,7 @@ export default function TodoSidebar({
     const nextValue = !isCollapsed;
     onCollapsedChange?.(nextValue);
   }
-  const logo = mounted
+  const logo = hasHydrated
     ? (themeLogoImages[resolvedTheme as keyof typeof themeLogoImages] ??
       themeLogoImages.default)
     : themeLogoImages.default;
@@ -231,18 +213,17 @@ export default function TodoSidebar({
             ? projects.map((project: TodoProps["project"]) => (
                 <div className="flex flex-row group" key={project?.id}>
                   <Tooltip delay={0}>
-                    <Tooltip.Trigger className="w-full">
-                      <Link href={`/projects/${project?.id}`}>
+                    <Tooltip.Trigger className="flex-1 min-w-0">
+                      <Link href={`/projects/${project?.slug}`}>
                         <Button
                           type="button"
                           aria-label={isCollapsed ? project?.name : undefined}
-                          fullWidth
                           variant={
-                            pathname === `/projects/${project?.name}`
+                            pathname === `/projects/${project?.slug}`
                               ? "secondary"
                               : "ghost"
                           }
-                          className={`flex  ${
+                          className={`flex truncate w-full min-w-0 overflow-y-auto   ${
                             isCollapsed ? "justify-center" : "justify-between"
                           }`}
                         >
@@ -267,7 +248,7 @@ export default function TodoSidebar({
                       onClick={() => deleteProject(project.id)}
                       variant="ghost"
                       className={
-                        "text-accent opacity-0 transition-opacity group-hover:opacity-100"
+                        "text-accent opacity-0 shrink-0 transition-opacity group-hover:opacity-100"
                       }
                     >
                       <Trash />

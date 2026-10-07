@@ -45,5 +45,21 @@ const themeCheckImages = {
   "dark-rose": "/icons/roseCheck.png",
   mono: "/icons/calmCheck.png",
 };
+const themeLogoImages = {
+  default: "/default.png",
+  ocean: "/focus.png",
+  violet: "/plan.png",
+  emerald: "/fresh-start.png",
+  coral: "/priorities.png",
+  rose: "/rose.png",
+  calm: "/calm.png",
 
-export { themeNotebookImages, themeFolderImages,themeCheckImages };
+  // Dark themes
+  midnight: "/focus.png",
+  "dark-violet": "/plan.png",
+  forest: "/fresh-start.png",
+  "dark-coral": "/priorities.png",
+  "dark-rose": "/rose.png",
+  mono: "/calm.png",
+};
+export { themeNotebookImages, themeFolderImages,themeCheckImages,themeLogoImages };

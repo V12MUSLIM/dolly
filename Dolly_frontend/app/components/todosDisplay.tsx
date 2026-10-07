@@ -1,7 +1,7 @@
 import { Card } from "@heroui/react";
 import { TodoProps } from "./todo/todo";
 import Filters from "./filters";
-import AddTodo from "./addTodo";
+import AddTodo from "../add-todo/addTodo";
 
 import AnimatedList from "./AnimatedList";
 import { Calendar } from "lucide-react";
@@ -24,7 +24,7 @@ export default function TodosDisplay({
   quickAdd = false,
 }: TodosDisplayProps) {
   const today = formatDate(new Date(), "full");
-  console.log(todos)
+  console.log(todos);
   return (
     <Card
       className={`flex w-full border-0 shadow-none   min-h-0  h-full flex-col  px-2 py-4 overflow-hidden ${className ?? ""}`}
@@ -32,7 +32,7 @@ export default function TodosDisplay({
       {quickAdd && <AddTodo />}
 
       <Card.Header className="mb-2 mt-2 px-2 sm:mb-3 sm:mt-3 sm:px-3 space-y-4">
-        <Card.Title className="text-2xl sm:text-3xl ">
+        <Card.Title className="text-2xl sm:text-3xl truncate">
           {title ? title : "Your Todos"}
         </Card.Title>
         <p className="flex flex-row text-sm gap-1">
@@ -53,7 +53,12 @@ export default function TodosDisplay({
             displayScrollbar={true}
           />
         ) : (
-          <EmptyState message={emptyMessage} style="page" state="fullEmpty" isButton />
+          <EmptyState
+            message={emptyMessage}
+            style="page"
+            state="fullEmpty"
+            isButton
+          />
         )}
       </Card.Content>
     </Card>

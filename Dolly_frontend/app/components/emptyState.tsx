@@ -6,9 +6,10 @@ import {
   themeFolderImages,
   themeNotebookImages,
   themeCheckImages,
-} from "../constants/folderImages";
+} from "../constants/themedImages";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { useTodos } from "@/store/TodosStore";
 interface EmptyStateProps {
   message?: string;
   style: "page" | "section";
@@ -34,8 +35,9 @@ export default function EmptyState({
 }: EmptyStateProps) {
   const isPage = style === "page";
   const isFullEmpty = state === "fullEmpty";
-  const [mounted, setMounted] = useState(false);
+
   const { theme } = useTheme();
+  const hasHydrated = useTodos((s) => s.hasHydrated);
   const defaultContent = isFullEmpty
     ? isPage
       ? {
@@ -59,18 +61,15 @@ export default function EmptyState({
           message: "This section is beautifully clear. Keep that streak going.",
         };
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  const folderImage = mounted
+  const folderImage = hasHydrated
     ? (themeFolderImages[theme as keyof typeof themeFolderImages] ??
       themeFolderImages.default)
     : themeFolderImages.default;
-  const NotebookImage = mounted
+  const NotebookImage = hasHydrated
     ? (themeNotebookImages[theme as keyof typeof themeNotebookImages] ??
       themeNotebookImages.default)
     : themeNotebookImages.default;
-  const CheckImages = mounted
+  const CheckImages = hasHydrated
     ? (themeCheckImages[theme as keyof typeof themeCheckImages] ??
       themeCheckImages.default)
     : themeCheckImages.default;
@@ -79,7 +78,7 @@ export default function EmptyState({
     <Surface
       className={[
         "flex w-full flex-col items-center justify-center text-center",
-        "text-foreground shadow-sm ",
+        "text-foreground  ",
         isPage
           ? "min-h-[60vh] rounded-3xl px-6 py-12"
           : "rounded-2xl px-5 py-10",

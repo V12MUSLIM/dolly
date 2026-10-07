@@ -22,16 +22,11 @@ title:
 project:
 - The project name if explicitly provided.
 - Otherwise null.
-A project is: 
-  id: string;
-  name: string;
-  color: string;
+- Return only the project name, not a project object.
 
-
- 
 
 subtasks:
-- Array of strings.
+- Array of objects.
 - Add subtasks only when the user explicitly asks to break the task into steps OR provides multiple concrete tasks belonging to the main task.
 - Otherwise [].
 A subtask is:
@@ -44,7 +39,7 @@ dueDate:
 - "tomorrow" means the day after the current date.
 - For relative dates such as "next week", calculate the appropriate date.
 - If no date is specified, return null.
-- Never return a different date format.
+- Never return a datetime or another date format.
 
 isPomodoro:
 - "on" only if the user explicitly requests Pomodoro.
@@ -62,7 +57,7 @@ SCHEMA:
   "title": "string",
   "project": "string | null",
   "subtasks": ["string"],
-  "dueDate": "ISO-8601 string | null",
+ "dueDate": "YYYY-MM-DD | null"
   "isPomodoro": "on | off",
   "piority": "P1 | P2 | P3 | P4 | null"
 }

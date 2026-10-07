@@ -1,5 +1,5 @@
 import { Card, Label, Switch, Select, ListBox } from "@heroui/react";
-import AddTodo from "./addTodo";
+import AddTodo from "../add-todo/addTodo";
 import { useTodos } from "@/store/TodosStore";
 import { today, getLocalTimeZone } from "@internationalized/date";
 export default function QuickAdd() {

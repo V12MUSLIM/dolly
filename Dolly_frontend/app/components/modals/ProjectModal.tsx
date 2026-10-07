@@ -31,7 +31,6 @@ export default function ProjectModal() {
                   onChange={(e) => {
                     setProjectName(e.target.value);
                   }}
-                  
                 />
                 {projectName.length >= 50 && (
                   <ErrorMessage>Max project name is 50</ErrorMessage>
@@ -75,6 +74,7 @@ export default function ProjectModal() {
                   setProjects({
                     id: crypto.getRandomValues(new Uint8Array(5))?.toString(),
                     name: projectName,
+                    slug: projectName.trim().replace(/\s+/g, "-").toLowerCase(),
                     color: color,
                   });
                   setProjectName("");

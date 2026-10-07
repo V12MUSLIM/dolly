@@ -11,7 +11,7 @@ export default function Filters() {
       className="w-full max-w-xl  px-1"
     >
       <Tabs.ListContainer>
-        <Tabs.List>
+        <Tabs.List >
           <Tabs.Tab id="all">
             All <Tabs.Indicator className="bg-accent" />
           </Tabs.Tab>

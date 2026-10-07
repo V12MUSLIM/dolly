@@ -5,6 +5,7 @@ import {
   Calendar,
   ChevronDown,
   Clock3,
+  Flag,
   FolderKanban,
   X,
 } from "lucide-react";
@@ -18,9 +19,11 @@ import useDueDate from "@/hooks/useDueDate";
 import formatDate from "@/utils/formatDate";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+
 interface Project {
   id: string;
   name: string;
+  slug: string;
   color: string;
 }
 type SubTask = {
@@ -61,18 +64,29 @@ export default function Todo({
   const { label, isMissed, dayDif } = useDueDate(dueDate);
   const formattedDate = formatDate(createdAt, "medium");
   const piorityColors = {
-    P1: "danger",
-    P2: "warning",
-    P3: "success",
-    P4: "default",
+    P1: "fill-danger",
+    P2: "fill-warning",
+    P3: "fill-success",
+    P4: "fill-accent",
   };
 
   return (
     <Card
-      className={`w-full truncate border transition-colors duration-200 hover:border-accent/50 hover:bg-accent-soft-hover/5  ${isMissed ? "bg-danger-soft" : ""} `}
+      className={`w-full  truncate shadow-none md:shadow-sm border p-2 transition-colors duration-200 hover:border-accent/50 hover:bg-accent-soft-hover/5  ${isMissed ? "bg-danger-soft" : ""} `}
       dir="auto"
     >
-      <Card.Content className="flex min-h-0 flex-row items-center justify-between gap-2 px-3 py-2">
+      <Card.Header
+        className={`mx-auto ${isPomodoro === "on" ? "flex" : "hidden"}`}
+      >
+        {isPomodoro == "on" && (
+          <div className="">
+            <div className="text-sm text-accent font-medium">
+              {timer === 0 ? "Take a Rest!" : `${minutes}:${seconds}`}
+            </div>
+          </div>
+        )}
+      </Card.Header>
+      <Card.Content className="flex  min-h-0 flex-row items-center justify-between gap-2 px-3 py-2">
         {isEditing ? (
           <TodoEdit title={title} id={id} />
         ) : (
@@ -121,11 +135,16 @@ export default function Todo({
                 <div className="mt-0.5  items-center gap-x-2 text-[11px] leading-4 text-muted flex">
                   <span className="flex items-center gap-1 whitespace-nowrap">
                     <Calendar className="size-3" aria-hidden="true" />
-                    Created {formattedDate}
+                    {formattedDate}
                   </span>
                   <span className="flex items-center gap-1 whitespace-nowrap">
                     <Clock3 className="size-3" aria-hidden="true" />
                     {timeLabel}
+                  </span>
+                  <span>
+                    <Flag
+                      className={`size-3 ${piorityColors[piority as keyof typeof piorityColors]}`}
+                    />
                   </span>
                   {project ? (
                     <span
@@ -150,13 +169,6 @@ export default function Todo({
                   }
                 >
                   Due {label}
-                </StatusChip>
-              )}
-              {isPomodoro == "on" && (
-                <StatusChip variant="success">
-                  {timer === 0
-                    ? "Take a Rest!"
-                    : `Time Left ${minutes}:${seconds}`}
                 </StatusChip>
               )}
 

@@ -14,6 +14,7 @@ export default function StatusChip({
   children,
   variant = "default",
   size,
+  
 }: {
   children: React.ReactNode;
   variant?: "danger" | "warning" | "success" | "default";

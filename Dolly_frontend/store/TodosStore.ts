@@ -5,6 +5,7 @@ import { persist } from "zustand/middleware";
 export interface Project {
   id: string;
   name: string;
+  slug:string;
   color: string;
 }
 export interface TodosStoreTypes {
