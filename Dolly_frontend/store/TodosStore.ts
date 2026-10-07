@@ -1,21 +1,22 @@
+import type { Subtask } from "@/app/add-todo/addTodo";
 import { TodoProps } from "@/app/components/todo/todo";
 import { DateValue } from "@internationalized/date";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+
 export interface Project {
   id: string;
   name: string;
-  slug:string;
+  slug: string;
   color: string;
 }
 export interface TodosStoreTypes {
   todos: TodoProps[];
+  title: string;
+  dueDate: DateValue | null;
+  setTitle: (title: TodoProps["title"]) => void;
   completeTodo: (id: TodoProps["id"]) => void;
-  addTodo: (
-    title: TodoProps["title"],
-    dueDate: DateValue | null,
-    subtasks: TodoProps["subtasks"],
-  ) => void;
+  addTodo: () => void;
   deleteTodo: (id: TodoProps["id"]) => void;
   filter: "all" | "completed" | "uncompleted";
   setFilter: (filter: TodosStoreTypes["filter"]) => void;
@@ -43,14 +44,18 @@ export interface TodosStoreTypes {
   deleteProject: (id: string) => void;
   isProjectModalOpen: boolean;
   setProjectModalOpen: (isOpen: boolean) => void;
-  
+  subtasks: Subtask[];
+  setSubtasks: (subtasks: Subtask[]) => void;
+  setDueDate: (dueDate: DateValue | null) => void;
 }
 
 export const useTodos = create<TodosStoreTypes>()(
   persist(
     (set) => ({
       todos: [],
-
+      title: "",
+      dueDate: null,
+      subtasks: [],
       isProjectModalOpen: false,
       selectProjectName: null,
       selectPiority: null,
@@ -70,22 +75,20 @@ export const useTodos = create<TodosStoreTypes>()(
       setFilter: (filter) => {
         set({ filter });
       },
-      addTodo: (title, dueDate, subtasks) => {
-        const trimmed = title.trim();
-
+      addTodo: () => {
         set((state) => ({
           todos: [
             ...state.todos,
             {
               id: crypto.getRandomValues(new Uint8Array(5))?.toString(),
-              title: trimmed,
+              title: state.title.trim(),
               completed: false,
               createdAt: new Date().toISOString(),
               project: state.selectProjectName,
-              subtasks: subtasks,
+              subtasks: state.subtasks,
               dueDate:
-                dueDate || state.datePickerValue
-                  ? dueDate?.toString() || state.datePickerValue
+                state.dueDate || state.datePickerValue
+                  ? state.dueDate?.toString() || state.datePickerValue
                   : null,
               isPomodoro: state.selectPomodoro,
               piority: state.selectPiority,
@@ -177,7 +180,23 @@ export const useTodos = create<TodosStoreTypes>()(
       setProjectModalOpen: (isOpen) => {
         set({ isProjectModalOpen: isOpen });
       },
+      setTitle(title) {
+        set({
+          title: title,
+        });
+      },
+      setSubtasks(subtasks) {
+        set({
+          subtasks: subtasks,
+        });
+      },
+      setDueDate(dueDate) {
+        set({
+          dueDate: dueDate,
+        });
+      },
     }),
+
     {
       name: "todos",
       onRehydrateStorage: () => (state) => {

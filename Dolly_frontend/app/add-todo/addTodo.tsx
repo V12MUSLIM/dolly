@@ -8,7 +8,7 @@ import { useState } from "react";
 import Tags from "../components/tags";
 import Subtasks from "./Subtasks";
 
-export type SubTask = {
+export type Subtask = {
   id: string;
   title: string;
 };
@@ -21,12 +21,16 @@ export default function AddTodo({
   variant?: "transparent" | "default" | "secondary" | "tertiary";
   subtask?: boolean;
 }) {
-  const [title, setTitle] = useState("");
   const [collapse, setCollapse] = useState(false);
-  const [dueDate, setDueDate] = useState<DateValue | null>(null);
-  const [showError, setShowError] = useState(false);
-  const [subtasks, setSubtasks] = useState<SubTask[]>([]);
 
+  const [showError, setShowError] = useState(false);
+
+  const dueDate = useTodos((s) => s.dueDate);
+  const setDueDate = useTodos((s) => s.setDueDate);
+  const subtasks = useTodos((s) => s.subtasks);
+  const setSubtasks = useTodos((s) => s.setSubtasks);
+  const title = useTodos((s) => s.title);
+  const setTitle = useTodos((s) => s.setTitle);
   const addTodo = useTodos((s) => s.addTodo);
   const setFilter = useTodos((s) => s.setFilter);
   const setProjectName = useTodos((s) => s.setProjectName);
@@ -38,7 +42,7 @@ export default function AddTodo({
       setShowError(true);
       return;
     }
-    addTodo(title, dueDate, subtasks);
+    addTodo();
     setTitle("");
     setShowError(false);
     setFilter("all");

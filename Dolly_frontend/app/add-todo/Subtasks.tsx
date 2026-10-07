@@ -1,14 +1,15 @@
 import { AnimatePresence, motion } from "motion/react";
 import { Button, Input, Label } from "@heroui/react";
 import { ChevronDown } from "lucide-react";
-import type { SubTask } from "./addTodo";
+import type { Subtask } from "./addTodo";
 import { Dispatch, SetStateAction, useRef } from "react";
+import { TodosStoreTypes } from "@/store/TodosStore";
 
 type SubtasksProps = {
   collapse: boolean;
   setCollapse: Dispatch<SetStateAction<boolean>>;
-  subtasks: SubTask[];
-  setSubtasks: Dispatch<SetStateAction<SubTask[]>>;
+  subtasks: Subtask[];
+  setSubtasks: TodosStoreTypes["setSubtasks"];
 };
 export default function Subtasks({
   collapse,
@@ -18,19 +19,19 @@ export default function Subtasks({
 }: SubtasksProps) {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   function addNextSubtask(
-    subtask: SubTask,
+    subtask: Subtask,
     k: React.KeyboardEvent<HTMLInputElement>,
   ) {
     if (k.key !== "Enter") return;
     if (!subtask.title.trim()) return;
     k.preventDefault();
-    setSubtasks((prev) => [...prev, { id: crypto.randomUUID(), title: "" }]);
+    setSubtasks([...subtasks, { id: crypto.randomUUID(), title: "" }]);
     requestAnimationFrame(() => {
       inputRefs.current[inputRefs.current.length - 1]?.focus();
     });
   }
   function deleteSubtask(id: string) {
-    setSubtasks((prev) => prev.filter((subtask) => subtask.id !== id));
+    setSubtasks(subtasks.filter((subtask) => subtask.id !== id));
   }
   return (
     <>
@@ -59,8 +60,8 @@ export default function Subtasks({
                     variant="secondary"
                     value={subtask.title}
                     onChange={(e) => {
-                      setSubtasks((prev) =>
-                        prev.map((item) => {
+                      setSubtasks(
+                        subtasks.map((item) => {
                           return item.id === subtask.id
                             ? { ...item, title: e.target.value }
                             : item;
@@ -86,8 +87,8 @@ export default function Subtasks({
             <Button
               onPress={() => {
                 if (subtasks.length === 10) return;
-                setSubtasks((prev) => [
-                  ...prev,
+                setSubtasks([
+                  ...subtasks,
                   { id: crypto.randomUUID(), title: "" },
                 ]);
               }}

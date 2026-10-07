@@ -13,7 +13,7 @@ const selectItems = [
 const noProject = "no project";
 const noPiority = "no piority";
 const priorities = ["P1", "P2", "P3", "P4"];
-export default function Tagsf({
+export default function Tags({
   datePickerValue,
   setDatePickerValue,
 }: {
@@ -22,7 +22,6 @@ export default function Tagsf({
 }) {
   const setProjectName = useTodos((s) => s.setProjectName);
   const projects = useTodos((s) => s.projects);
-  const selectProjectName = useTodos((s) => s.selectProjectName);
   const pomodoro = useTodos((s) => s.selectPomodoro);
   const setPomodoro = useTodos((s) => s.setPomodoro);
   const selectPiority = useTodos((s) => s.selectPiority);
