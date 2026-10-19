@@ -8,6 +8,7 @@ interface TodoEditProps {
   id: TodoProps["id"];
 }
 
+
 export default function TodoEdit({ title, id }: TodoEditProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [newTitle, setNewTitle] = useState(title);

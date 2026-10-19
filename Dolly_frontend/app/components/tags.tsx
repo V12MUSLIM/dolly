@@ -4,6 +4,8 @@ import { Select, Label, ListBox, Card, Button } from "@heroui/react";
 import { Calendar, DateField, DatePicker } from "@heroui/react";
 import type { DateValue } from "@internationalized/date";
 import { X } from "lucide-react";
+import { TodoProps } from "./todo/todo";
+import { Dispatch, SetStateAction } from "react";
 
 const selectItems = [
   { style: "Pomodoro", isPomodoro: "on" },
@@ -14,18 +16,26 @@ const noProject = "no project";
 const noPiority = "no piority";
 const priorities = ["P1", "P2", "P3", "P4"];
 export default function Tags({
+  pomodoro,
+  setPomodoro,
   datePickerValue,
   setDatePickerValue,
+  setProjectName,
+  setPriority,
+  priority,
+  projectName,
 }: {
+  pomodoro: TodoProps["isPomodoro"];
+  setPomodoro: Dispatch<SetStateAction<TodoProps["isPomodoro"]>>;
   datePickerValue: DateValue | null;
   setDatePickerValue: (value: DateValue | null) => void;
+  setProjectName: Dispatch<SetStateAction<TodoProps["project"]>>;
+  setPriority: Dispatch<SetStateAction<TodoProps["piority"]>>;
+  priority: TodoProps["piority"];
+  projectName: TodoProps["project"];
 }) {
-  const setProjectName = useTodos((s) => s.setProjectName);
   const projects = useTodos((s) => s.projects);
-  const pomodoro = useTodos((s) => s.selectPomodoro);
-  const setPomodoro = useTodos((s) => s.setPomodoro);
-  const selectPiority = useTodos((s) => s.selectPiority);
-  const setpiority = useTodos((s) => s.setPiority);
+
   return (
     <Card className="w-full space-y-4 max-w-3xl" variant="secondary">
       <Card.Content className=" grid grid-cols-1 gap-y-4 place-items-center md:grid-cols-2">
@@ -74,7 +84,7 @@ export default function Tags({
 
             setProjectName(selectedProject ?? null);
           }}
-          defaultValue={noProject}
+          value={projectName?.id ?? noProject}
         >
           <Label>Project</Label>
           <Select.Trigger className={"text-accent font-semibold"}>
@@ -101,10 +111,10 @@ export default function Tags({
           </Select.Popover>
         </Select>
         <Select
-          value={selectPiority}
+          value={priority}
           onChange={(value) => {
             if (value === noPiority) {
-              setpiority(null);
+              setPriority(null);
               return;
             }
             if (
@@ -114,7 +124,7 @@ export default function Tags({
               value === "P3" ||
               value === "P4"
             ) {
-              setpiority(value);
+              setPriority(value);
             }
           }}
           placeholder="No Piority"
@@ -140,17 +150,17 @@ export default function Tags({
             </ListBox>
           </Select.Popover>
         </Select>
-        <div className="w-full flex justify-center items-center ">
+        <div className="w-full flex justify-center gap-4 items-center ">
           <DatePicker
-            className="max-w-[256px] w-full "
-            name="date"
+            className="max-w-[256px] w-full  "
+            name="due date field"
             value={datePickerValue}
             onChange={setDatePickerValue}
             isDisabled={pomodoro === "on"}
           >
             <Label>Due Date</Label>
 
-            <DateField.Group fullWidth>
+            <DateField.Group  fullWidth>
               <DateField.Input>
                 {(segment) => <DateField.Segment segment={segment} />}
               </DateField.Input>

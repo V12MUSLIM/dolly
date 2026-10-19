@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Card, Checkbox, Tooltip } from "@heroui/react";
+import { Button, Card, Checkbox,  Tooltip } from "@heroui/react";
 import {
   Calendar,
   ChevronDown,
@@ -19,6 +19,7 @@ import useDueDate from "@/hooks/useDueDate";
 import formatDate from "@/utils/formatDate";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import Linkify from 'linkify-react';
 
 interface Project {
   id: string;
@@ -55,7 +56,7 @@ export default function Todo({
   subtasks,
 }: TodoProps) {
   const completeTodo = useTodos((s) => s.completeTodo);
-
+ 
   const edit = useTodos((s) => s.edit);
   const [collapse, setCollapse] = useState(false);
   const { timer, minutes, seconds } = usePomodoro(createdAt);
@@ -69,7 +70,11 @@ export default function Todo({
     P3: "fill-success",
     P4: "fill-accent",
   };
-
+  const options = {
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    className:"text-accent/50 underline"
+  };
   return (
     <Card
       className={`w-full  truncate shadow-none md:shadow-sm border p-2 transition-colors duration-200 hover:border-accent/50 hover:bg-accent-soft-hover/5  ${isMissed ? "bg-danger-soft" : ""} `}
@@ -122,7 +127,7 @@ export default function Todo({
                           : "text-foreground"
                       }`}
                     >
-                      {title}
+                     <Linkify  as="a" options={options}>{title}</Linkify>
                     </p>
                   </Tooltip.Trigger>
 

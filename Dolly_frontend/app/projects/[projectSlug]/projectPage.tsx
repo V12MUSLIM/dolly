@@ -7,7 +7,6 @@ export default function ProjectPage({ projectSlug }: { projectSlug: string }) {
   const todos = useTodos((s) => s.todos);
   const hasHydrated = useTodos((s) => s.hasHydrated);
   const projects = useTodos((s) => s.projects);
-  
   const currentProject = projects.find(
     (project) => project?.slug === projectSlug,
   );

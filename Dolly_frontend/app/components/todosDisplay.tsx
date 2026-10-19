@@ -7,6 +7,7 @@ import AnimatedList from "./AnimatedList";
 import { Calendar } from "lucide-react";
 import formatDate from "@/utils/formatDate";
 import EmptyState from "./emptyState";
+import { useTodos } from "@/store/TodosStore";
 interface TodosDisplayProps {
   className?: "" | string;
   todos: TodoProps[];
@@ -24,6 +25,8 @@ export default function TodosDisplay({
   quickAdd = false,
 }: TodosDisplayProps) {
   const today = formatDate(new Date(), "full");
+  const projects = useTodos.getState().projects;
+  console.log(projects)
   console.log(todos);
   return (
     <Card

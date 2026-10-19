@@ -1,22 +1,19 @@
-import type { Subtask } from "@/app/add-todo/addTodo";
 import { TodoProps } from "@/app/components/todo/todo";
-import { DateValue } from "@internationalized/date";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
 export interface Project {
   id: string;
   name: string;
   slug: string;
   color: string;
 }
+type AddTodoType = Pick<
+  TodoProps,
+  "dueDate" | "isPomodoro" | "title" | "subtasks" | "project" | "piority"
+>;
 export interface TodosStoreTypes {
   todos: TodoProps[];
-  title: string;
-  dueDate: DateValue | null;
-  setTitle: (title: TodoProps["title"]) => void;
   completeTodo: (id: TodoProps["id"]) => void;
-  addTodo: () => void;
   deleteTodo: (id: TodoProps["id"]) => void;
   filter: "all" | "completed" | "uncompleted";
   setFilter: (filter: TodosStoreTypes["filter"]) => void;
@@ -27,42 +24,29 @@ export interface TodosStoreTypes {
   markAllUncompleted: () => void;
   deleteAll: () => void;
   CalcualteComletedPercentage: (todos: TodosStoreTypes["todos"]) => number;
-  selectProjectName: TodoProps["project"];
-  setProjectName: (projectName: TodoProps["project"]) => void;
   hasHydrated: boolean;
   setHasHydrated: (hasHydrated: boolean) => void;
   datePickerValue: string | null;
   setDatePickerValue: (value: string | null) => void;
-  selectPomodoro: "on" | "off";
-  setPomodoro: (selectPomodoro: TodoProps["isPomodoro"]) => void;
   completedDates: string[];
   addSelectedDate: (date: string) => void;
-  selectPiority: TodoProps["piority"];
-  setPiority: (selectPiority: TodoProps["piority"]) => void;
   projects: Project[];
   setProjects: (projec: Project) => void;
   deleteProject: (id: string) => void;
   isProjectModalOpen: boolean;
   setProjectModalOpen: (isOpen: boolean) => void;
-  subtasks: Subtask[];
-  setSubtasks: (subtasks: Subtask[]) => void;
-  setDueDate: (dueDate: DateValue | null) => void;
+
+  creatTodo: (todo: AddTodoType) => void;
 }
 
 export const useTodos = create<TodosStoreTypes>()(
   persist(
     (set) => ({
       todos: [],
-      title: "",
-      dueDate: null,
-      subtasks: [],
       isProjectModalOpen: false,
-      selectProjectName: null,
-      selectPiority: null,
       projects: [],
       hasHydrated: false,
       completedDates: [],
-      selectPomodoro: "off",
       setHasHydrated: (hasHydrated) => set({ hasHydrated }),
       filter: "all",
       completeTodo: (id) => {
@@ -75,27 +59,25 @@ export const useTodos = create<TodosStoreTypes>()(
       setFilter: (filter) => {
         set({ filter });
       },
-      addTodo: () => {
+      creatTodo(todo) {
         set((state) => ({
           todos: [
             ...state.todos,
             {
               id: crypto.getRandomValues(new Uint8Array(5))?.toString(),
-              title: state.title.trim(),
+              title: todo.title.trim(),
               completed: false,
-              createdAt: new Date().toISOString(),
-              project: state.selectProjectName,
-              subtasks: state.subtasks,
-              dueDate:
-                state.dueDate || state.datePickerValue
-                  ? state.dueDate?.toString() || state.datePickerValue
-                  : null,
-              isPomodoro: state.selectPomodoro,
-              piority: state.selectPiority,
+              createdAt: new Date().toISOString().split("T")[0],
+              project: todo.project,
+              subtasks: todo.subtasks,
+              dueDate: todo.dueDate ? todo.dueDate  : null,
+              isPomodoro: todo.isPomodoro,
+              piority: todo.piority,
             },
           ],
         }));
       },
+
       deleteTodo: (id) => {
         set((state) => ({
           todos: state.todos.filter((todo) => todo.id !== id),
@@ -135,16 +117,7 @@ export const useTodos = create<TodosStoreTypes>()(
 
         return (completedTodos.length / todos.length) * 100;
       },
-      setProjectName: (projectName) => {
-        set(() => ({
-          selectProjectName: projectName,
-        }));
-      },
-      setPomodoro: (pomodoro: TodoProps["isPomodoro"]) => {
-        set(() => ({
-          selectPomodoro: pomodoro,
-        }));
-      },
+
       datePickerValue: null,
       setDatePickerValue: (datePickerValue) => {
         set({
@@ -162,11 +135,7 @@ export const useTodos = create<TodosStoreTypes>()(
           };
         });
       },
-      setPiority: (selectPiority) => {
-        set({
-          selectPiority: selectPiority,
-        });
-      },
+
       setProjects: (project) => {
         set((state) => ({
           projects: [...state.projects, project],
@@ -179,21 +148,6 @@ export const useTodos = create<TodosStoreTypes>()(
       },
       setProjectModalOpen: (isOpen) => {
         set({ isProjectModalOpen: isOpen });
-      },
-      setTitle(title) {
-        set({
-          title: title,
-        });
-      },
-      setSubtasks(subtasks) {
-        set({
-          subtasks: subtasks,
-        });
-      },
-      setDueDate(dueDate) {
-        set({
-          dueDate: dueDate,
-        });
       },
     }),
 

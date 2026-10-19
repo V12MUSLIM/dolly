@@ -7,6 +7,7 @@ import type { DateValue } from "@internationalized/date";
 import { useState } from "react";
 import Tags from "../components/tags";
 import Subtasks from "./Subtasks";
+import { TodoProps } from "../components/todo/todo";
 
 export type Subtask = {
   id: string;
@@ -22,34 +23,39 @@ export default function AddTodo({
   subtask?: boolean;
 }) {
   const [collapse, setCollapse] = useState(false);
-
+  const [title, setTitle] = useState("");
   const [showError, setShowError] = useState(false);
-
-  const dueDate = useTodos((s) => s.dueDate);
-  const setDueDate = useTodos((s) => s.setDueDate);
-  const subtasks = useTodos((s) => s.subtasks);
-  const setSubtasks = useTodos((s) => s.setSubtasks);
-  const title = useTodos((s) => s.title);
-  const setTitle = useTodos((s) => s.setTitle);
-  const addTodo = useTodos((s) => s.addTodo);
+  const [dueDate, setDueDate] = useState<DateValue | null>(null);
+  const [subtasks, setSubtasks] = useState<Subtask[]>([]);
+  const [pomodoro, setPomodoro] = useState<"on" | "off">("off");
+  const [projectName, setProjectName] = useState<TodoProps["project"] | null>(
+    null,
+  );
+  const [priority, setPriority] = useState<TodoProps["piority"]>(null);
+  const creatTodo = useTodos((s) => s.creatTodo);
   const setFilter = useTodos((s) => s.setFilter);
-  const setProjectName = useTodos((s) => s.setProjectName);
-  const setPomodoro = useTodos((s) => s.setPomodoro);
-  const setPrioirty = useTodos((s) => s.setPiority);
   const setDatePickerValue = useTodos((s) => s.setDatePickerValue);
+  const todo = {
+    title: title,
+    dueDate: dueDate?.toString() ?? null,
+    subtasks: subtasks,
+    isPomodoro: pomodoro,
+    project: projectName,
+    piority: priority,
+  };
   const handelAddTodo = () => {
     if (title.trim().length === 0) {
       setShowError(true);
       return;
     }
-    addTodo();
+    creatTodo(todo);
     setTitle("");
     setShowError(false);
     setFilter("all");
     setProjectName(null);
     setDueDate(null);
     setPomodoro("off");
-    setPrioirty(null);
+    setPriority(null);
     setDatePickerValue(null);
     setSubtasks([]);
     setCollapse(false);
@@ -110,7 +116,16 @@ export default function AddTodo({
 
       {filters && (
         <Card.Footer className="px-2 pb-2 sm:px-3 sm:pb-3">
-          <Tags datePickerValue={dueDate} setDatePickerValue={setDueDate} />
+          <Tags
+            projectName={projectName}
+            priority={priority}
+            setPriority={setPriority}
+            setProjectName={setProjectName}
+            pomodoro={pomodoro}
+            setPomodoro={setPomodoro}
+            datePickerValue={dueDate}
+            setDatePickerValue={setDueDate}
+          />
         </Card.Footer>
       )}
     </Card>

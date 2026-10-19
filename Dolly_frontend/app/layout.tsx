@@ -6,7 +6,7 @@ import { Providers } from "./providers";
 import AppShell from "./components/app-shell";
 import { ToastProvider } from "@heroui/react";
 import { Metadata } from "next";
-import ProjectModal from "./components/modals/ProjectModal";
+
 
 export const metadata: Metadata = {
   title: "Dolly",
